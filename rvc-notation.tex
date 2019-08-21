@@ -1,0 +1,358 @@
+% Notation as used in Robotics, Vision and Control textbook
+%
+% Shorthand and abbreviations
+%   \hom -> homogeneous transform
+%   \Hom -> Homogeneous transform
+%   \etal
+%   \eq{e} -> (e) which is a reference to equation e, eg. \ref{e}
+%   \fnumber -> f-number
+%   \Mlab -> MATLAB
+%   \comma      comma + a short space
+%   \tsub{k}   display timestep subscript in angle brackets <k>
+%   \cspace  configuration space, curly C
+%
+% Linear algebra notation
+% =================
+%
+%  A pre-superscript is used to indicate the reference coordinate frame.  This can be created using the macro
+%
+%  \presup{A}
+%
+% Points
+% --------
+%
+%  Points are displayed in ???
+%
+%   \point[f]{P}
+%   \coord{x}{y}    (x, y)
+%
+% Abstract pose
+% ==========
+%
+% \pose          xi
+% \estpose     xi with a hat
+% \posedot     greek letter nu for spatial velocity
+%
+% \pose[R]          xi with a pre-superscript
+% \estpose[R]     xi with a hat and a pre-superscript
+% \posedot[R]     greek letter nu for spatial velocity with a pre-superscript
+%
+% Vectors
+% ----------
+%
+% Vectors are displayed in bold italic font
+%
+%   \vec{x}     a vector
+%   \vec[f]{x}  a vector with a coordinate frame
+%
+%   \dvec[f]{x}  a dotted vector 
+%   \ddvec[f]{x}  a double dotted vector 
+%   \vech[f]{x} a homogeneous vector (tilde above)
+%   \vecb[f]{x} a vector with bar 
+%   \tvec[f]{x} a homogeneous vector with a tilde
+%   \hvec[f]{x} an estimated vector with a hat
+%
+%  if [f] not provided no presup is displayed
+%
+%
+% Matrices
+% -----------
+%
+%  Matrices are displayed in bold font
+%
+%   \mat{x}     a matrix
+%   \mat[f]{x}  a matrix with a coordinate frame
+%   \dmat[f]{x}  a matrix derivative
+%   \sk{x}  -> S(x) skew symmetric matrix
+
+% Quaternion
+%
+%   \q            a quaternion, q with a bubble on top
+%
+% Poses
+%
+%   \pose       pose
+%   \estpose       estimated pose, with hat
+%
+%   \pose[f]    pose with respect to a frame
+%   \pose        abstract pose
+%   \posedot        derivative of abstract pose
+%
+% Lie Groups
+% ========
+%
+% displayed in Roman font
+%
+%   \SO{n}   SO(n)
+%   \SE{n}   SE(n)
+%   \so{n}     so(n)
+%   \se{n}     se(n)
+%
+% MATLAB code
+% ===========
+%
+% Display a block of code in blue fixed-width font
+%
+%   \begin{Code}
+%   \end{Code}
+%
+% other environments include
+%   CodeSmall   uses a small font, useful for very wide lines
+%   CodeNum    numbers the lines of code
+%
+% \var{} displays a variable in blue fixed-width font 
+% \Mlab  displays MATLAB with the all letters bar the first in small caps font
+%
+% Units
+% ====
+% 
+% Always set in Roman font with preceding thin space, can be used in math or LR mode.
+%
+%   \unit{}  eg. 20\unit{lx/m^2}.  
+%   \Hz
+%   \ms
+%   \us   microseconds using mu
+%   \nm
+%   \deg  degrees shown with a bubble
+%
+% General shorthand notation
+% =====================
+%
+%   \sci{5}{-2} format in scientific notation, 5 x 10^{-2}
+%
+%  \vector{x}{y}{z}    (x, y, z)
+%  \comma  a comma followed by space
+%  \cframe{a}  Coordinate frame {a}
+%
+%   \eq{ref}    reference an equation, in parentheses
+%   \etal       et al.
+%
+%   \ba    begin eqnarray
+%   \ea    end eqnarray
+%
+%   \hom    homogeneous transform
+%   \Hom    Homogeneous transform
+%
+% Some common log-like functions
+%
+%   \floor
+%   \ceil
+%   \ord
+%   \det
+%   \trace  -> tr
+%
+%
+
+\usepackage{amsmath, amssymb}
+
+\usepackage{xifthen}
+\usepackage{color}
+
+\typeout{------ start of RVC notation ------}
+\newcommand{\f}{f}
+
+%
+
+%
+\renewcommand{\hom}{homogeneous transform}
+\newcommand{\Hom}{Homogeneous transform}
+
+\newcommand{\homeq}{\simeq}
+
+\newcommand{\xstrut}[1]{\rule{0ex}{#1ex}}
+
+\newcommand{\tsub}[1]{{\scriptstyle{\langle #1 \rangle}}}
+
+\newcommand{\hstrut}{\rule{0mm}{7mm}}
+\newcommand{\ba}{\begin{eqnarray}}
+\newcommand{\ea}{\end{eqnarray}}
+
+\newcommand{\eq}[1]{(\ref{#1})}
+\newcommand{\etal}{{et al.}}
+\newcommand{\fnumber}{\textit{f}-number}
+
+%
+% some common functions
+%
+%   \floor
+%   \ceil
+%   \ord
+%   \det
+%   \sk{}   skew symmetric matrix
+\newcommand{\floor}{\mbox{floor}}
+\newcommand{\ceil}{\mbox{ceil}}
+\newcommand{\ord}{\mbox{Ord}}
+\newcommand{\vex}{\mbox{vex}}
+
+\renewcommand{\det}[1]{{\mbox{det}(\mat{#1})}}
+\newcommand{\trace}[1]{{\mbox{tr}(\mat{#1})}}
+
+
+%
+% use as \sci{5}{-2} for formatting 5e-2
+%
+\newcommand{\sci}[2]{\mbox{$#1\!\cdot\!10^{#2}$}}
+
+
+%
+% macros to display units in math or LR mode, 20\unit{lx/m^2}
+%
+%   \unit{}
+%   \Hz
+%   \ms
+%   \us
+%   \deg
+%
+\newcommand{\unit}[1]{\mbox{$\mathrm{\,#1}$}}
+\newcommand{\Hz}{\unit{Hz}}
+\newcommand{\kHz}{\unit{Hz}}
+\newcommand{\MHz}{\unit{Hz}}
+\newcommand{\ms}{\unit{ms}}
+\newcommand{\us}{\unit{\mu s}}
+\renewcommand{\deg}{\mbox{${}^\circ$}}
+
+
+\newcommand{\nm}{\unit{nm}}
+\newcommand{\Dsixfive}{$\rm D_{65}$}
+
+\newcommand{\R}{{\bf R}}
+\newcommand{\zero}{{\bf 0}}
+
+%
+% notational shorthand (for consistency)
+%   \q            a quaternion
+%
+%   \pose       pose
+%   \pose[f]    pose with respect to a frame
+%   \vec{x}     a vector
+%   \vec[f]{x}  a vector with a coordinate frame
+%   \dvec[f]{x}  a dotted vector with a coordinate frame
+%   \ddvec[f]{x}  a double dotted vector with a coordinate frame
+%   \vech{x}    a homogeneous vector
+%   \vech[f]{x} a homogeneous vector with a coordinate frame
+%   \vecb{x}    a vector with bar
+%   \vecb[f]{x} a vector with bar and a coordinate frame
+%   \hvec{x}    a vector with a hat
+%
+%   \mat{x}     a matrix
+%   \mat[f]{x}  a matrix with a coordinate frame
+%
+%   \point[f]{P}
+%   \frame[f]{P}{s}
+%   \frameh[f]{P}{s}   \hat{P}
+%   \frameb[f]{P}{s}   \bar{P}
+%
+%   \comma      comma + a short space
+%   \coord{x}{y}    (x, y)
+%   \vector{x}{y}{z}    (x, y, z)
+%  \pose        abstract pose
+%  \posedot        derivative of abstract pose
+\newcommand{\im}[1]{\mathbf{#1}}
+\newcommand{\presup}[1]{\,{}^{\scriptscriptstyle #1}\!}
+\newcommand{\relval}[2]{\presup{#1}{#2}}
+\newcommand{\pose}[1][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathbf{\xi}}}
+\newcommand{\estpose}[1][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathbf{\hat{\xi}}}}
+\newcommand{\hpose}[1][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\hat{\mathbf{\xi}}}}
+\newcommand{\posedot}[1][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathbf{\nu}}}
+
+
+\newcommand{\q}{\mathring{q}}
+
+\DeclareMathAlphabet{\mathitbf}{OML}{cmm}{b}{it}
+\newcommand{\twist}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathcal{S}}}
+\renewcommand{\vec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathitbf{#2}}}
+
+\newcommand{\hvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\hat{\vec{#2}}}}
+\newcommand{\tvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\tilde{\vec{#2}}}}
+\newcommand{\evec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\hat{\vec{#2}}}}
+%
+\newcommand{\dvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\dot{\vec{#2}}}}
+\newcommand{\ddvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\ddot{\vec{#2}}}}
+
+\newcommand{\hv}[1]{\ensuremath{\stackrel{\textstyle{#1}}{\textstyle{\sim}}}}
+\newcommand{\vech}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathitbf{\tilde{#2}}}}
+\newcommand{\vecb}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\bar{\underline #2}}}
+\newcommand{\mat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{{\boldsymbol #2}}}
+\newcommand{\hmat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{{\hat{\boldsymbol #2}}}}
+\newcommand{\dmat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{{\dot{\boldsymbol #2}}}}
+\newcommand{\emat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{\hat{\boldsymbol #2}}}
+\newcommand{\matfn}[3][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{{\mat{#2}}\left(#3\right)}}
+\newcommand{\Rt}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{{\bf R}\left(#2\right)}}
+
+
+%\newcommand{\homt}[3]{{}^{#1}{\bf #3}_{#2}}
+%\renewcommand{\frame}[2]{{}^{#1}{#2}}
+
+\newcommand{\cframe}[1]{\{#1\}}
+\newcommand{\cspace}{{\cal C}}
+\newcommand{\point}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathbf{\mathrm{#2}}}}
+
+\newcommand{\comma}{,\;}
+\newcommand{\coord}[2]{\left( #1 \comma #2 \right)}
+\renewcommand{\vector}[3]{\left( #1 \comma #2 \comma #3 \right)}
+
+
+
+% Matlab documentation macros
+\newfont{\School}{pncr}
+\newfont{\eightTR}{pncr at 8pt}
+%\newfont{\vtt}{pcrr}
+
+\newcommand{\fullstop}{\,\,\,.}
+\newcommand{\termsep}{\,\,\,,}
+\typeout{------ end of notation ------}
+
+\newcommand{\del}[1]{\delta_{#1}}
+\newcommand{\vdel}[1]{\vec{\delta}_{#1}}
+
+%=====================================================================
+%  MATLAB code support
+%=====================================================================
+
+\usepackage{color}
+% Matlab code example environment
+%   for code examples.
+%   each executable line must begin with >>
+%   comments start with !
+%   lines starting !>> are executed during parsing, but dont print
+%   
+%   \begin{Code}
+%   \end{Code}
+\usepackage{fancyvrb}
+\fvset{formatcom=\color{blue},fontseries=c,fontfamily=courier,xleftmargin=4mm,commentchar=!}
+
+\DefineVerbatimEnvironment{Code}{Verbatim}{formatcom=\color{blue},fontseries=c,fontfamily=courier,fontsize=\footnotesize,xleftmargin=4mm,commentchar=!}
+
+\DefineVerbatimEnvironment{CodeSmall}{Verbatim}{formatcom=\color{blue},fontseries=c,fontfamily=courier,fontsize=\scriptsize,xleftmargin=1mm,commentchar=!}
+
+\DefineVerbatimEnvironment{CodeNum}{Verbatim}{numbers=left,numbersep=4pt,formatcom=\color{blue},fontseries=c,fontfamily=courier,fontsize=\footnotesize,xleftmargin=4mm}
+
+%\var{}
+%\Mlab
+
+\newcommand{\var}[1]{{\color{blue}\Verb+#1+}}
+\newcommand{\model}[1]{\index{code}{#1@\textit{#1}}\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#1+}}{\Verb+#1+}}
+\newcommand{\block}[1]{\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#1+}}{\textsf{#1}}}
+
+%\newcommand{\func}[1]{{\color{blue}\Verb+#1+}}
+\newcommand{\func}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{\index{code}{#2}}{\index{code}{#1}}\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#2+}}{\Verb+#2+}}
+
+\newcommand{\methodb}[2]{\index{code}{#1@\textbf{#1}!.#2}\ifthenelse{\boolean{draft}}{{\color{magenta}\Verb+#1.#2+}}{\Verb+#1.#2+}}
+\newcommand{\method}[2]{\index{code}{#1@\textbf{#1}!.#2}\ifthenelse{\boolean{draft}}{{\color{magenta}\Verb+#2+}}{\Verb+#2+}}
+\newcommand{\class}[1]{\index{code}{#1@\textbf{#1}}\ifthenelse{\boolean{draft}}{{\color{cyan}\Verb+#1+}}{\Verb+#1+}}
+\newcommand{\property}[1]{\index{property}{#1}\ifthenelse{\boolean{draft}}{{\color{cyan}\Verb+#1+}}{\Verb+#1+}}
+
+%\newcommand{\Mlab}{{M\textsc{ATLAB}}}
+\newcommand{\MATLAB}{MATLAB\textsuperscript{\textregistered}}
+
+\newcommand{\SE}[1]{\ensuremath{\mathrm{{\bf SE}(#1)}}}
+\newcommand{\SO}[1]{\ensuremath{\mathrm{{\bf SO}(#1)}}}
+\newcommand{\se}[1]{\ensuremath{\mathrm{{\bf se}(#1)}}}
+\newcommand{\so}[1]{\ensuremath{\mathrm{{\bf so}(#1)}}}
+\newcommand{\isk}[1]{\vee\left( #1\right)}
+\newcommand{\iskx}[1]{\vee_{\times}\left( #1\right)}
+\newcommand{\skx}[1]{\left[#1\right]_{\times}}
+\newcommand{\sk}[1]{\left[#1\right]}
+%\newcommand{\norm}[1]{\Vert #1 \Vert}
+\newcommand{\Ad}{\mbox{Ad}}
+\newcommand{\ad}{\mbox{ad}}
