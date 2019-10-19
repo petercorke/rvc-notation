@@ -209,13 +209,15 @@
 \newcommand{\MHz}{\unit{Hz}}
 \newcommand{\ms}{\unit{ms}}
 \newcommand{\us}{\unit{\mu s}}
+\newcommand{\mm}{\unit{mm}}
+\newcommand{\um}{\unit{\mu m}}
+\newcommand{\nm}{\unit{nm}}
 \renewcommand{\deg}{\mbox{${}^\circ$}}
 
 
-\newcommand{\nm}{\unit{nm}}
 \newcommand{\Dsixfive}{$\rm D_{65}$}
 
-\newcommand{\R}{{\bf R}}
+\newcommand{\R}{\mathbb{R}}
 \newcommand{\zero}{{\bf 0}}
 
 %
@@ -256,26 +258,28 @@
 \newcommand{\posedot}[1][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathbf{\nu}}}
 
 
-\newcommand{\q}{\mathring{q}}
+\newcommand{\q}[1][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathring{q}}}
+
 
 \DeclareMathAlphabet{\mathitbf}{OML}{cmm}{b}{it}
 \newcommand{\twist}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathcal{S}}}
 \renewcommand{\vec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathitbf{#2}}}
 
-\newcommand{\hvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\hat{\vec{#2}}}}
-\newcommand{\tvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\tilde{\vec{#2}}}}
+\newcommand{\hvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\tilde{\vec{#2}}}}
 \newcommand{\evec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\hat{\vec{#2}}}}
+\newcommand{\bvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\bar{\vec{#2}}}}
+
 %
 \newcommand{\dvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\dot{\vec{#2}}}}
 \newcommand{\ddvec}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\ddot{\vec{#2}}}}
 
 \newcommand{\hv}[1]{\ensuremath{\stackrel{\textstyle{#1}}{\textstyle{\sim}}}}
-\newcommand{\vech}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathitbf{\tilde{#2}}}}
-\newcommand{\vecb}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\bar{\underline #2}}}
+%\newcommand{\vech}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\mathitbf{\tilde{#2}}}
+%\newcommand{\vecb}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{\bar{\mathitbf{#2}}}
+
 \newcommand{\mat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{{\boldsymbol #2}}}
-\newcommand{\hmat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{{\hat{\boldsymbol #2}}}}
 \newcommand{\dmat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{{\dot{\boldsymbol #2}}}}
-\newcommand{\emat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{\hat{\boldsymbol #2}}}
+\newcommand{\emat}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}\,}{\hat{\boldsymbol#2}}}
 \newcommand{\matfn}[3][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{{\mat{#2}}\left(#3\right)}}
 \newcommand{\Rt}[2][ZZZZ]{\ifthenelse{\equal{#1}{ZZZZ}}{}{\presup{#1}}{{\bf R}\left(#2\right)}}
 
