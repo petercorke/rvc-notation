@@ -1,6 +1,6 @@
 # LaTeX macros for Robotics, Vision and Control
 
-This file includes macros to create equations in the style of those used in the textbook "Robotics, Vision & Control".
+This file includes macros to create equations in the style of those used in the textbook ["Robotics, Vision & Control"](http://petercorke.com/wordpress/rvc), all editions.
 
 ```latex
 \include{rvc-notation}
