@@ -25,6 +25,16 @@ $\ominus \pose[C]_A = \pose[A]_B \oplus \pose[B]_C$
 ```
 ![pose](figs/pose.png)
 
+We can apply a pose to a vector, which linearly transforms it by
+
+```\latex
+$\pose_b \sbullet \vec{b}_P$
+```
+
+You can tweak the size of the bullet by giving it a relative scale argument, ie. `\sbullet[2]` is very large.
+
+There are also estimated pose and derivative of pose or spatial velocity
+
 ```\latex
 $\estpose, \posedot$
 ```
