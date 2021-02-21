@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\title{Robotics, Vision \& Control notation in LaTex}
+\author{Peter Corke}
+\date{}
+
+\usepackage[skins,listings]{tcolorbox}
+\input{rvc-notation}
+
+\newtcblisting{exampleA}[2][]{%
+  colframe=red!50!yellow!50!black,
+  colback=red!50!yellow!5!white,
+  coltitle=red!50!yellow!3!white,
+  bicolor,colbacklower=white,
+  fonttitle=\sffamily\bfseries,
+  sidebyside,
+  title=#2,#1}
+
+\newtcblisting{exampleB}[2][]{%
+  colframe=red!50!yellow!50!black,
+  colback=white,
+  coltitle=red!50!yellow!3!white,
+  bicolor,colbacklower=red!50!yellow!5!white,
+  fonttitle=\sffamily\bfseries,
+  sidebyside,text and listing,
+  title=#2,#1}
+
+\begin{document}
+\maketitle
+\begin{exampleA}[righthand width=3.5cm,center lower]{Pose}
+$\pose$  $\pose[A]_B$  \\
+$\pose[A]_B \oplus \pose[B]_C \ominus \pose[C]_D$  \\
+$\pose \sbullet \vec{v}$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Coordinate frame}
+$\cframe{A}$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Point}
+$\point{P}$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Matrices}
+$\mat{R}$  $\mat[A]R$  $\mat[A]{R}_B$ \\
+$\dmat{R}$ \\
+$\emat{R}$ \\
+$\matfn{J}{\vec{q}}$   $\matfn[0]{J}{\vec{q}}$ \\
+$\mat{0}_{2 \times 3}$   $\mat{1}_{3 \times 3}$
+\end{exampleA}
+
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Vectors}
+$\vec{v}$  $\vec[A]{v}$  \\
+$\dvec{v}$  $\dvec[A]{v}$  \\
+$\ddvec{v}$  $\ddvec[A]{v}$  \\
+$\evec{v}$  $\evec[A]{v}$  \\
+$\bvec{v}$  $\bvec[A]{v}$ \\
+$\hvec{v}$  $\hvec[A]{v}$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Quaternions}
+$\quat{q} \circ \quat{p}$ 
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Unit quaternions}
+$\uquat[A]{q}_B \circ \uquat[B]{q}_C$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Skew-symmetric matrices}
+$\skx{v}$  $\iskx{\mat{A}}$ \\
+$\sk{v}$  $\isk{\mat{A}}$ 
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Groups and spaces}
+$\SO{3}, \SE{3}$  \\
+$\so{3}, \se{3}$  \\
+text mode \SO{3} \\
+$\R$ \\
+$\cspace$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Code}
+\begin{Code}
+[x,e] = eig(A);
+\end{Code}
+
+\begin{CodeNum}
+[x,e] = eig(A);
+z = x(:,2);
+\end{CodeNum}
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm]{Other operators}
+$\theta_1 \circleddash \theta_2$ \\
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm]{Units}
+The object was 12\mm\ across, 
+accelerated at 2.3\unit{m s^{-2}},
+the servo interval was 12\ms, 
+and the angle spanned 30\deg.
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm,center lower]{Numbers and coordinates}
+$\sci{5}{-2}$  \\
+$\coord{1}{2}, \vector{1}{2}{3}$
+\end{exampleA}
+
+\begin{exampleA}[righthand width=3.5cm]{Miscellaneous}
+Here is a sentence running into an equation
+\[
+y = x^{2} \fullstop
+\]
+\end{exampleA}
+
+
+\end{document}

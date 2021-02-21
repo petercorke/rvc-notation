@@ -8,6 +8,8 @@ This file includes macros to create equations in the style of those used in the 
 
 Make sure that `rvc-notation.tex` is in your LaTeX path.
 
+A [PDF version of the cheatsheet is available here](https://github.com/petercorke/rvc-notation/blob/master/cheatsheet.pdf).
+
 ## Poses
 
 * `\pose`        abstract pose, greek letter &xi;
