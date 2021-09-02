@@ -142,14 +142,17 @@
 %   \trace  -> tr
 %
 %
+\typeout{------ start of RVC notation ------}
 
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{accents}
 \usepackage{bm}
 \usepackage{xifthen}
 \usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{graphicx,scalerel}
 
-\typeout{------ start of RVC notation ------}
 \newcommand{\f}{f}
 
 %
@@ -162,7 +165,7 @@
 
 \newcommand{\xstrut}[1]{\rule{0ex}{#1ex}}
 
-\newcommand{\tsub}[1]{{\scriptstyle{\langle #1 \rangle}}}
+\newcommand{\tsub}[1]{{\!\scriptstyle{\langle #1 \rangle}}}
 
 \newcommand{\hstrut}{\rule{0mm}{7mm}}
 \newcommand{\ba}{\begin{eqnarray}}
@@ -254,24 +257,28 @@
 \newcommand{\presup}[1]{\,{}^{\scriptscriptstyle #1}\!}
 \newcommand{\relval}[2]{\presup{#1}{#2}}
 \newcommand{\pose}[1][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathbf{\xi}}}
-\newcommand{\estpose}[1][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathbf{\hat{\xi}}}}
+\newcommand{\estpose}[1][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\hat{\mathbf{\xi}}}}
 \newcommand{\hpose}[1][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\hat{\mathbf{\xi}}}}
 \newcommand{\posedot}[1][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathbf{\nu}}}
 
 
+
+
 \newcommand{\q}[1][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathring{q}}}
 \newcommand{\uquat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathring{#2}}}
+\newcommand{\duquat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\dot{\mathring{#2}}}}
 \newcommand{\quat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\breve{#2}}}
 
 \DeclareMathAlphabet{\mathitbf}{OML}{cmm}{b}{it}
 \newcommand{\twist}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathcal{S}}}
-\renewcommand{\vec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\bm{\mathit{#2}}}}
+\renewcommand{\vec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\boldsymbol #2}}
 
 \newcommand{\hvec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\tilde{\vec{#2}}}}
 \newcommand{\evec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\hat{\vec{#2}}}}
 \newcommand{\bvec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\bar{\vec{#2}}}}
 
-%
+
+\newcommand{\dhvec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\dot{\tilde{\vec{#2}}}}}
 \newcommand{\dvec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\dot{\vec{#2}}}}
 \newcommand{\ddvec}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\ddot{\vec{#2}}}}
 
@@ -279,9 +286,9 @@
 %\newcommand{\vech}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathitbf{\tilde{#2}}}
 %\newcommand{\vecb}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\bar{\mathitbf{#2}}}
 
-\newcommand{\mat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}\,}{{\boldsymbol #2}}}
-\newcommand{\dmat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}\,}{{\dot{\boldsymbol #2}}}}
-\newcommand{\emat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}\,}{\hat{\boldsymbol#2}}}
+\newcommand{\mat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}\,}{{\mathbf #2}}}
+\newcommand{\dmat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}\,}{{\dot{\mathbf #2}}}}
+\newcommand{\emat}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}\,}{\hat{\mathbf#2}}}
 \newcommand{\matfn}[3][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{{\mat{#2}}\left(#3\right)}}
 \newcommand{\Rt}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{{\bf R}\left(#2\right)}}
 
@@ -289,9 +296,11 @@
 %\newcommand{\homt}[3]{{}^{#1}{\bf #3}_{#2}}
 %\renewcommand{\frame}[2]{{}^{#1}{#2}}
 
-\newcommand{\cframe}[1]{\{#1\}}
+\newcommand{\cframe}[1]{\ensuremath{\{\mathrm{#1}\}}}
 \newcommand{\cspace}{{\cal C}}
-\newcommand{\point}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\presup{#1}}{\mathbf{\mathrm{#2}}}}
+\newcommand{\point}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{}{\ensuremath{\presup{#1}}}{\ensuremath{\mathrm{#2}}}}
+
+%{\ensuremath{\presup{#1}{\mathbf{\mathrm{#2}}}}}
 
 \newcommand{\comma}{,\;}
 \newcommand{\coord}[2]{\left( #1 \comma #2 \right)}
@@ -315,7 +324,7 @@
 %  MATLAB code support
 %=====================================================================
 
-\usepackage{color}
+
 % Matlab code example environment
 %   for code examples.
 %   each executable line must begin with >>
@@ -324,21 +333,25 @@
 %   
 %   \begin{Code}
 %   \end{Code}
-\usepackage{fancyvrb}
-\fvset{formatcom=\color{blue},fontseries=c,fontfamily=courier,xleftmargin=4mm,commentchar=!}
 
-\DefineVerbatimEnvironment{Code}{Verbatim}{formatcom=\color{blue},fontseries=c,fontfamily=courier,fontsize=\footnotesize,xleftmargin=4mm,commentchar=!}
+%\fvset{formatcom=\color{blue},fontseries=c,fontfamily=menlo,xleftmargin=4mm,commentchar=!}
+%
+%\DefineVerbatimEnvironment{Code}{Verbatim}{formatcom=\color{blue},fontseries=c,fontfamily=menlo,fontsize=\footnotesize,xleftmargin=4mm,commentchar=!}
 
-\DefineVerbatimEnvironment{CodeSmall}{Verbatim}{formatcom=\color{blue},fontseries=c,fontfamily=courier,fontsize=\scriptsize,xleftmargin=1mm,commentchar=!}
+\fvset{formatcom={\color{blue}\baselineskip=-\maxdimen\lineskip=0pt},xleftmargin=4mm,commentchar=!}
 
-\DefineVerbatimEnvironment{CodeNum}{Verbatim}{numbers=left,numbersep=4pt,formatcom=\color{blue},fontseries=c,fontfamily=courier,fontsize=\footnotesize,xleftmargin=4mm}
+\DefineVerbatimEnvironment{Code}{Verbatim}{}
+
+\DefineVerbatimEnvironment{CodeSmall}{Verbatim}{fontsize=\scriptsize,xleftmargin=1mm,commentchar=!}
+
+\DefineVerbatimEnvironment{CodeNum}{Verbatim}{numbers=left,numbersep=4pt,fontsize=\footnotesize,xleftmargin=4mm}
 
 %\var{}
 %\Mlab
 
-\newcommand{\var}[1]{{\color{blue}\Verb+#1+}}
-\newcommand{\model}[1]{\index{code}{#1@\textit{#1}}\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#1+}}{\Verb+#1+}}
-\newcommand{\block}[1]{\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#1+}}{\textsf{#1}}}
+%\newcommand{\var}[1]{{\color{blue}\Verb+#1+}}
+%\newcommand{\model}[1]{\index{code}{#1@\textit{#1}}\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#1+}}{\Verb+#1+}}
+%\newcommand{\block}[1]{\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#1+}}{\textsf{#1}}}
 
 %\newcommand{\func}[1]{{\color{blue}\Verb+#1+}}
 \newcommand{\func}[2][_NONE]{\ifthenelse{\equal{#1}{_NONE}}{\index{code}{#2}}{\index{code}{#1}}\ifthenelse{\boolean{draft}}{{\color{green}\Verb+#2+}}{\Verb+#2+}}
@@ -354,7 +367,7 @@
 \newcommand{\SE}[1]{\ensuremath{\mathrm{{\bf SE}(#1)}}}
 \newcommand{\SO}[1]{\ensuremath{\mathrm{{\bf SO}(#1)}}}
 \newcommand{\se}[1]{\ensuremath{\mathrm{{\bf se}(#1)}}}
-\newcommand{\so}[1]{\ensuremath{\mathrm{{\bf so}(#1)}}}
+\newcommand{\sog}[1]{\ensuremath{\mathrm{{\bf so}(#1)}}}
 \newcommand{\isk}[1]{\vee\left( #1\right)}
 \newcommand{\iskx}[1]{\vee_{\times}\left( #1\right)}
 \newcommand{\skx}[1]{\left[#1\right]_{\times}}
@@ -363,7 +376,32 @@
 \newcommand{\Ad}{\mbox{Ad}}
 \newcommand{\ad}{\mbox{ad}}
 
-\usepackage{graphicx,scalerel}
+\newcommand{\obs}[1]{#1^{\scalebox{0.6}{\#}}}
+\usepackage{xparse}
+
+\NewDocumentCommand{\ovec}{ o m o }{%
+  \IfValueT{#1}{\presup{#1}}%
+  \vec{#2}%
+  \IfValueT{#3}{_{#3}}
+  ^{\scalebox{0.6}{\#}}%
+  }
+\NewDocumentCommand{\omat}{ o m o }{%
+  \IfValueT{#1}{\presup{#1}}%
+  \mat{#2}%
+  \IfValueT{#3}{_{#3}}
+  ^{\scalebox{0.6}{\#}}%
+  }
+
+\NewDocumentCommand{\obspose}{ o o }{%
+  \IfValueT{#1}{\presup{#1}}%
+  \mathbf{\xi}%
+  \IfValueT{#2}{_{#2}}
+  ^{\scalebox{0.6}{\#}}%
+  }
+
 \newcommand\sbullet[1][.5]{\mathbin{\ThisStyle{\vcenter{\hbox{%
   \scalebox{#1}{$\SavedStyle\bullet$}}}}}%
 }
+\newcommand{\UC}{\mathrm{S}}
+\newcommand{\TStwo}{\mathbb{R}^2 \times \UC^1}
+\newcommand{\TSthree}{\mathbb{R}^3 \times \UC^3}
